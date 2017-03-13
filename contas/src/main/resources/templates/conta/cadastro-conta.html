@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>Sisban</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+<div class="aw-layout-loading  js-loading-overlay">
+	<div class="aw-layout-loading__container">
+		<span class="aw-balls-spinner">Carregando...</span>
+	</div>
+</div>
+
+<div class="aw-layout-page">
+
+	<nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
+	  <div class="container-fluid">
+
+	    <div class="navbar-header">
+	      <a class="navbar-brand  hidden-xs" href="#">
+	        <img alt="AlgaWorks" th:src="@{/layout/images/logo.png}"/>
+	      </a>
+
+	      <ul class="nav  navbar-nav">
+	        <li>
+	          <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
+	        </li>
+	      </ul>
+	    </div>
+
+	    <ul class="nav navbar-nav  navbar-right">
+	    
+	      <!--<li>
+	        <a href="#" class="js-search-modal-trigger-show"><i class="fa  fa-search"></i></a>
+	      </li>-->
+	       
+	      <li>
+	        <a href="#"><em class="fa  fa-sign-out"></em></a>
+	      </li> 
+	    </ul>
+
+	  </div>
+	</nav>
+
+	<aside class="aw-layout-sidebar  js-sidebar">
+		<div class="aw-layout-sidebar__content">
+
+    <nav class="aw-menu  js-menu">
+      <ul class="aw-menu__list">
+
+        <li class="aw-menu__item">
+          <a href="dashboard.html"><i class="fa  fa-fw  fa-home"></i><span>Início</span></a>
+        </li>
+
+        <li class="aw-menu__item  is-active">
+          <a href="#">
+            <i class="fa  fa-fw  fa-file-text"></i><span>Contas</span>
+            <i class="aw-menu__navigation-icon  fa"></i>
+          </a>
+      
+          <ul class="aw-menu__list  aw-menu__list--sublist">
+            <li class="aw-menu__item  aw-menu__item--link"><a href="cadastro-produto.html">Cadastro de contas</a></li>
+            <li class="aw-menu__item  aw-menu__item--link  is-active"><a href="pesquisa-produtos.html">Pesquisa de contas</a></li>
+          </ul>
+        </li>
+
+        <li class="aw-menu__item  is-expanded">
+          <a href="#">
+            <i class="fa  fa-fw  fa-file-text"></i><span>Transações</span>
+            <i class="aw-menu__navigation-icon  fa"></i>
+          </a>
+
+          <ul class="aw-menu__list  aw-menu__list--sublist">
+            <li class="aw-menu__item  aw-menu__item--link"><a href="transferencia.html">Transferência</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a href="aporte.html">Aporte</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a href="saque.html">Saque</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a href="estorno.html">Estorno</a></li>
+            
+          </ul>
+        </li>
+
+      </ul>
+    </nav>
+
+		</div>
+	</aside>
+
+	<section class="aw-layout-content  js-content">
+
+
+<div class="page-header">
+	<div class="container-fluid">
+		<h1>
+			Cadastro de contas
+		</h1>
+	</div>
+</div>
+
+<div class="container-fluid">
+
+	
+
+	<form method="POST" class="form-vertical  js-form-loading" th:object="${conta}">
+            
+            <div class="alert  alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+                <span th:text="${mensagem}"></span>
+            </div>
+            
+            <div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<i class="fa  fa-exclamation-circle"></i> Verifique se todos os dados foram preenchidos corretamente.
+            </div>
+
+		<div class="row">
+                        
+               
+			<div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-titular">Titular</label>
+                                        <input id="input-produto-nome" type="text" class="form-control" th:field="*{titular}"/>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-titular">CPF</label>
+                                        <input id="input-produto-nome" type="text" class="form-control" th:field="*{cpf}"/>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-titular">Data de nascimento</label>
+                                        <input id="input-produto-nome" type="date" class="form-control" th:field="*{datanascimento}"/>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-fantasia">Tipo</label>
+                                        <select id="tipo" class="form-control" th:field="*{tipo}">
+                                            <option value="">Selecione o tipo</option>
+                                            <option value="PF">Conta pessoa física</option>
+                                            <option value="PJ">Conta pessoa jurídica</option>
+                                        </select>
+                                </div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-razao">CNPJ</label>
+                                        <input id="input-produto-nome" type="text" class="form-control" th:field="*{cnpj}"/>
+                                </div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-razao">Razão social</label>
+                                        <input id="input-produto-nome" type="text" class="form-control" th:field="*{razaosocial}"/>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-fantasia">Nome Fantasia</label>
+                                        <input id="input-produto-nome" type="text" class="form-control" th:field="*{nomefantasia}"/>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-fantasia">Data de abertura</label>
+                                        <input id="input-produto-nome" type="date" class="form-control" th:field="*{dataabertura}"/>
+                                </div>
+			</div>
+                         
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-fantasia">Hierarquia</label>
+                                        <select id="hierarquia" class="form-control" th:field="*{hierarquia}">
+                                            <option value="">Selecione a hierarquia</option>
+                                            <option value="MATRIZ">Matriz</option>
+                                            <option value="FILIAL">Filial</option>
+                                        </select>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-fantasia">Situação</label>
+                                        <select id="situacao" class="form-control" th:field="*{situacao}">
+                                            <option value="">Selecione a situação</option>
+                                            <option value="ATIVA">Ativa</option>
+                                            <option value="BLOQUEADA">Bloqueada</option>
+                                            <option value="CANCELADA">Cancelada</option>
+                                        </select>
+                                </div>
+			</div>
+                        <div class="col-sm-6">
+				<div class="form-group">
+                                        <label for="input-fantasia">Saldo inicial</label>
+                                        <input id="input-produto-nome" type="text" class="form-control js-moeda" th:field="*{saldo}"/>
+                                </div>
+			</div>
+                    
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Salvar</button>
+		</div>
+
+	</form>
+</div>
+
+
+
+	</section>
+	
+	<footer class="aw-layout-footer  js-content">
+		<div class="container-fluid">
+			<span class="aw-footer-disclaimer">&copy; 2017 Sisban. Todos os direitos reservados.</span>
+		</div>
+	</footer>
+
+</div>
+
+
+
+<script th:src="@{/layout/javascripts/vendors.min.js}"></script>
+<script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
+<script th:src="@{/javascripts/vendors/jquery.masknumber.min.js}"></script>
+<script>
+    $('.js-moeda').maskNumber({
+       decimal: ',',
+       thousands:'.'
+    });
+</script>
+
+</body>
+</html>
